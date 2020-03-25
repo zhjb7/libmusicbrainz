@@ -57,6 +57,8 @@
 #include "musicbrainz5/LabelList.h"
 #include "musicbrainz5/LabelInfo.h"
 #include "musicbrainz5/LabelInfoList.h"
+#include "musicbrainz5/Genre.h"
+#include "musicbrainz5/GenreList.h"
 #include "musicbrainz5/Lifespan.h"
 #include "musicbrainz5/Medium.h"
 #include "musicbrainz5/MediumList.h"

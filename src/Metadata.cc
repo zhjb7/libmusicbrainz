@@ -60,6 +60,8 @@
 #include "musicbrainz5/UserTagList.h"
 #include "musicbrainz5/LabelInfo.h"
 #include "musicbrainz5/LabelInfoList.h"
+#include "musicbrainz5/Genre.h"
+#include "musicbrainz5/GenreList.h"
 #include "musicbrainz5/Message.h"
 
 class MusicBrainz5::CMetadataPrivate
@@ -76,6 +78,7 @@ class MusicBrainz5::CMetadataPrivate
 			m_ISRC(0),
 			m_Disc(0),
 			m_LabelInfoList(0),
+			m_GenreList(0),
 			m_Rating(0),
 			m_UserRating(0),
 			m_Collection(0),
@@ -111,6 +114,7 @@ class MusicBrainz5::CMetadataPrivate
 		CISRC *m_ISRC;
 		CDisc *m_Disc;
 		CLabelInfoList *m_LabelInfoList;
+		CGenreList *m_GenreList;
 		CRating *m_Rating;
 		CUserRating *m_UserRating;
 		CCollection *m_Collection;
@@ -192,6 +196,9 @@ MusicBrainz5::CMetadata& MusicBrainz5::CMetadata::operator =(const CMetadata& Ot
 
 		if (Other.m_d->m_LabelInfoList)
 			m_d->m_LabelInfoList=new CLabelInfoList(*Other.m_d->m_LabelInfoList);
+
+		if (Other.m_d->m_GenreList)
+			m_d->m_GenreList=new CGenreList(*Other.m_d->m_GenreList);
 
 		if (Other.m_d->m_Rating)
 			m_d->m_Rating=new CRating(*Other.m_d->m_Rating);
@@ -289,6 +296,9 @@ void MusicBrainz5::CMetadata::Cleanup()
 
 	delete m_d->m_LabelInfoList;
 	m_d->m_LabelInfoList=0;
+
+	delete m_d->m_GenreList;
+	m_d->m_GenreList=0;
 
 	delete m_d->m_Rating;
 	m_d->m_Rating=0;
@@ -563,6 +573,11 @@ MusicBrainz5::CLabelInfoList *MusicBrainz5::CMetadata::LabelInfoList() const
 	return m_d->m_LabelInfoList;
 }
 
+MusicBrainz5::CGenreList *MusicBrainz5::CMetadata::GenreList() const
+{
+	return m_d->m_GenreList;
+}
+
 MusicBrainz5::CRating *MusicBrainz5::CMetadata::Rating() const
 {
 	return m_d->m_Rating;
@@ -693,6 +708,9 @@ std::ostream& MusicBrainz5::CMetadata::Serialise(std::ostream& os) const
 
 	if (LabelInfoList())
 		os << *LabelInfoList() << std::endl;
+
+	if (GenreList())
+		os << *GenreList() << std::endl;
 
 	if (UserRating())
 		os << *UserRating() << std::endl;

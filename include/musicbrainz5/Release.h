@@ -28,6 +28,7 @@
 
 #include "musicbrainz5/Entity.h"
 #include "musicbrainz5/LabelInfoList.h"
+#include "musicbrainz5/GenreList.h"
 #include "musicbrainz5/RelationList.h"
 #include "musicbrainz5/MediumList.h"
 #include "musicbrainz5/CollectionList.h"
@@ -70,6 +71,7 @@ namespace MusicBrainz5
 		std::string Barcode() const;
 		std::string ASIN() const;
 		CLabelInfoList *LabelInfoList() const;
+		CGenreList *GenreList() const;
 		CMediumList *MediumList() const;
 		CRelationListList *RelationListList() const;
 		CCollectionList *CollectionList() const;

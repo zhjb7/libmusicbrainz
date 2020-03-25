@@ -23,55 +23,32 @@
 
 ----------------------------------------------------------------------------*/
 
-#ifndef _MUSICBRAINZ5_RELEASE_GROUP_H
-#define _MUSICBRAINZ5_RELEASE_GROUP_H
+#ifndef _MUSICBRAINZ5_GENRE_H
+#define _MUSICBRAINZ5_GENRE_H
 
 #include <string>
 #include <iostream>
 
 #include "musicbrainz5/Entity.h"
-#include "musicbrainz5/ReleaseList.h"
-#include "musicbrainz5/RelationList.h"
-#include "musicbrainz5/TagList.h"
-#include "musicbrainz5/UserTagList.h"
-#include "musicbrainz5/SecondaryTypeList.h"
-#include "musicbrainz5/GenreList.h"
 
 #include "musicbrainz5/xmlParser.h"
 
 namespace MusicBrainz5
 {
-	class CReleaseGroupPrivate;
+	class CGenrePrivate;
 
-	class CArtistCredit;
-	class CRating;
-	class CUserRating;
-	class CSecondaryType;
-
-	class CReleaseGroup: public CEntity
+	class CGenre: public CEntity
 	{
 	public:
-		CReleaseGroup(const XMLNode& Node=XMLNode::emptyNode());
-		CReleaseGroup(const CReleaseGroup& Other);
-		CReleaseGroup& operator =(const CReleaseGroup& Other);
-		virtual ~CReleaseGroup();
+		CGenre(const XMLNode& Node=XMLNode::emptyNode());
+		CGenre(const CGenre& Other);
+		CGenre& operator =(const CGenre& Other);
+		virtual ~CGenre();
 
-		virtual CReleaseGroup *Clone();
+		virtual CGenre *Clone();
 
-		std::string ID() const;
-		std::string PrimaryType() const;
-		std::string Title() const;
-		std::string Disambiguation() const;
-		std::string FirstReleaseDate() const;
-		CArtistCredit *ArtistCredit() const;
-		CReleaseList *ReleaseList() const;
-		CRelationListList *RelationListList() const;
-		CTagList *TagList() const;
-		CUserTagList *UserTagList() const;
-		CRating *Rating() const;
-		CUserRating *UserRating() const;
-		CSecondaryTypeList *SecondaryTypeList() const;
-		CGenreList *GenreList() const;
+		int Count() const;
+		std::string GenreName() const;
 
 		virtual std::ostream& Serialise(std::ostream& os) const;
 		static std::string GetElementName();
@@ -83,8 +60,9 @@ namespace MusicBrainz5
 	private:
 		void Cleanup();
 
-		CReleaseGroupPrivate * const m_d;
+		CGenrePrivate * const m_d;
 	};
 }
 
 #endif
+

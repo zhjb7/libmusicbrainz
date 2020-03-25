@@ -157,6 +157,9 @@ extern "C"
 		<property name="catalognumber" uppername="CatalogNumber" type="string"/>
 		<property name="label" type="object"/>
 	</class>
+	<class name="genre" uppername="Genre">
+		<property name="genrename" uppername="GenreName" type="string"/>
+	</class>
 	<class name="lifespan">
 		<property name="begin" type="string"/>
 		<property name="end" type="string"/>
@@ -189,6 +192,7 @@ extern "C"
 		<property name="isrc" uppername="ISRC" type="object"/>
 		<property name="disc" type="object"/>
 		<property name="labelinfolist" uppername="LabelInfoList" type="object"/>
+		<property name="genrelist" uppername="GenreList" type="object"/>
 		<property name="rating" type="object"/>
 		<property name="userrating" uppername="UserRating" type="object"/>
 		<property name="collection" type="object"/>
@@ -282,6 +286,7 @@ extern "C"
 		<property name="barcode" type="string"/>
 		<property name="asin" uppername="ASIN" type="string"/>
 		<property name="labelinfolist" uppername="LabelInfoList" type="object"/>
+		<property name="genrelist" uppername="GenreList" type="object"/>
 		<property name="mediumlist" uppername="MediumList" type="object"/>
 		<property name="relationlist" uppername="RelationList" type="relationlist"/>
 		<property name="collectionlist" uppername="CollectionList" type="object"/>
@@ -356,6 +361,7 @@ extern "C"
 	<list name="iswc" uppername="ISWC"/>
 	<list name="label"/>
 	<list name="labelinfo" uppername="LabelInfo"/>
+	<list name="genre" uppername="Genre"/>
 	<list name="medium">
 		<property name="trackcount" uppername="TrackCount" type="integer"/>
 	</list>

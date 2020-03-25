@@ -36,6 +36,8 @@
 #include "musicbrainz5/Medium.h"
 #include "musicbrainz5/LabelInfoList.h"
 #include "musicbrainz5/LabelInfo.h"
+#include "musicbrainz5/Genre.h"
+#include "musicbrainz5/GenreList.h"
 #include "musicbrainz5/RelationList.h"
 #include "musicbrainz5/RelationListList.h"
 #include "musicbrainz5/Relation.h"
@@ -52,6 +54,7 @@ class MusicBrainz5::CReleasePrivate
 			m_ArtistCredit(0),
 			m_ReleaseGroup(0),
 			m_LabelInfoList(0),
+			m_GenreList(0),
 			m_MediumList(0),
 			m_RelationListList(0),
 			m_CollectionList(0)
@@ -72,6 +75,7 @@ class MusicBrainz5::CReleasePrivate
 		std::string m_Barcode;
 		std::string m_ASIN;
 		CLabelInfoList *m_LabelInfoList;
+		CGenreList *m_GenreList;
 		CMediumList *m_MediumList;
 		CRelationListList *m_RelationListList;
 		CCollectionList *m_CollectionList;
@@ -128,6 +132,9 @@ MusicBrainz5::CRelease& MusicBrainz5::CRelease::operator =(const CRelease& Other
 		if (Other.m_d->m_LabelInfoList)
 			m_d->m_LabelInfoList=new CLabelInfoList(*Other.m_d->m_LabelInfoList);
 
+		if (Other.m_d->m_GenreList)
+			m_d->m_GenreList=new CGenreList(*Other.m_d->m_GenreList);
+
 		if (Other.m_d->m_MediumList)
 			m_d->m_MediumList=new CMediumList(*Other.m_d->m_MediumList);
 
@@ -161,6 +168,9 @@ void MusicBrainz5::CRelease::Cleanup()
 
 	delete m_d->m_LabelInfoList;
 	m_d->m_LabelInfoList=0;
+
+	delete m_d->m_GenreList;
+	m_d->m_GenreList=0;
 
 	delete m_d->m_MediumList;
 	m_d->m_MediumList=0;
@@ -241,6 +251,10 @@ void MusicBrainz5::CRelease::ParseElement(const XMLNode& Node)
 	else if ("label-info-list"==NodeName)
 	{
 		ProcessItem(Node,m_d->m_LabelInfoList);
+	}
+	else if ("genre-list"==NodeName)
+	{
+		ProcessItem(Node,m_d->m_GenreList);
 	}
 	else if ("medium-list"==NodeName)
 	{
@@ -337,6 +351,11 @@ MusicBrainz5::CLabelInfoList *MusicBrainz5::CRelease::LabelInfoList() const
 	return m_d->m_LabelInfoList;
 }
 
+MusicBrainz5::CGenreList *MusicBrainz5::CRelease::GenreList() const
+{
+	return m_d->m_GenreList;
+}
+
 MusicBrainz5::CMediumList *MusicBrainz5::CRelease::MediumList() const
 {
 	return m_d->m_MediumList;
@@ -399,6 +418,9 @@ std::ostream& MusicBrainz5::CRelease::Serialise(std::ostream& os) const
 
 	if (LabelInfoList())
 		os << *LabelInfoList() << std::endl;
+
+	if (GenreList())
+		os << *GenreList() << std::endl;
 
 	if (MediumList())
 		os << *MediumList() << std::endl;

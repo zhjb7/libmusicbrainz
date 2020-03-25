@@ -32,6 +32,7 @@
 #include "musicbrainz5/WorkList.h"
 #include "musicbrainz5/ISRCList.h"
 #include "musicbrainz5/LabelInfoList.h"
+#include "musicbrainz5/GenreList.h"
 #include "musicbrainz5/ReleaseGroupList.h"
 #include "musicbrainz5/RecordingList.h"
 #include "musicbrainz5/LabelList.h"
@@ -90,6 +91,7 @@ namespace MusicBrainz5
 		CISRC *ISRC() const;
 		CDisc *Disc() const;
 		CLabelInfoList *LabelInfoList() const;
+		CGenreList *GenreList() const;
 		CRating *Rating() const;
 		CUserRating *UserRating() const;
 		CCollection *Collection() const;
