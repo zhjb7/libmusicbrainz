@@ -93,6 +93,7 @@
 #include "musicbrainz5/UserTagList.h"
 #include "musicbrainz5/Work.h"
 #include "musicbrainz5/WorkList.h"
+#include "musicbrainz5/CoverArt.h"
 
 static std::string GetMapName(std::map<std::string,std::string> Map, int Item)
 {

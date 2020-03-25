@@ -42,6 +42,7 @@
 #include "musicbrainz5/TagList.h"
 #include "musicbrainz5/UserTagList.h"
 #include "musicbrainz5/CollectionList.h"
+#include "musicbrainz5/CoverArt.h"
 
 #include "musicbrainz5/xmlParser.h"
 
@@ -110,6 +111,7 @@ namespace MusicBrainz5
 		CCollectionList *CollectionList() const;
 		CCDStub *CDStub() const;
 		CMessage *Message() const;
+		CCoverArt *CoverArt() const;
 
 		virtual std::ostream& Serialise(std::ostream& os) const;
 		static std::string GetElementName();

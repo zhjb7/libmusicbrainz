@@ -93,13 +93,6 @@ void MusicBrainz5::CGenre::ParseAttribute(const std::string& Name, const std::st
 {
 	if ("count"==Name)
 		ProcessItem(Value,m_d->m_Count);
-	else
-	{
-		#ifdef _MB5_DEBUG_
-			std::cerr << "Unrecognised genre attribute: '" << Name << "'" << std::endl;
-		#else
-	}
-#endif
 }
 
 void MusicBrainz5::CGenre::ParseElement(const XMLNode& Node)

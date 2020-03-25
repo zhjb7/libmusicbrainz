@@ -63,6 +63,7 @@
 #include "musicbrainz5/Genre.h"
 #include "musicbrainz5/GenreList.h"
 #include "musicbrainz5/Message.h"
+#include "musicbrainz5/CoverArt.h"
 
 class MusicBrainz5::CMetadataPrivate
 {
@@ -96,7 +97,8 @@ class MusicBrainz5::CMetadataPrivate
 			m_UserTagList(0),
 			m_CollectionList(0),
 			m_CDStub(0),
-			m_Message(0)
+			m_Message(0),
+			m_CoverArt(0)
 		{
 		}
 
@@ -133,6 +135,7 @@ class MusicBrainz5::CMetadataPrivate
 		CCollectionList *m_CollectionList;
 		CCDStub *m_CDStub;
 		CMessage *m_Message;
+		CCoverArt *m_CoverArt;
 };
 
 MusicBrainz5::CMetadata::CMetadata(const XMLNode& Node)
@@ -253,6 +256,9 @@ MusicBrainz5::CMetadata& MusicBrainz5::CMetadata::operator =(const CMetadata& Ot
 
 		if (Other.m_d->m_Message)
 			m_d->m_Message=new CMessage(*Other.m_d->m_Message);
+
+		if (Other.m_d->m_CoverArt)
+			m_d->m_CoverArt=new CCoverArt(*Other.m_d->m_CoverArt);
 	}
 
 	return *this;
@@ -353,6 +359,9 @@ void MusicBrainz5::CMetadata::Cleanup()
 
 	delete m_d->m_Message;
 	m_d->m_Message=0;
+
+	delete m_d->m_CoverArt;
+	m_d->m_CoverArt=0;
 }
 
 MusicBrainz5::CMetadata *MusicBrainz5::CMetadata::Clone()
@@ -668,6 +677,11 @@ MusicBrainz5::CMessage *MusicBrainz5::CMetadata::Message() const
 	return m_d->m_Message;
 }
 
+MusicBrainz5::CCoverArt *MusicBrainz5::CMetadata::CoverArt() const
+{
+	return m_d->m_CoverArt;
+}
+
 std::ostream& MusicBrainz5::CMetadata::Serialise(std::ostream& os) const
 {
 	os << "Metadata:" << std::endl;
@@ -762,6 +776,9 @@ std::ostream& MusicBrainz5::CMetadata::Serialise(std::ostream& os) const
 
 	if (Message())
 		os << *Message() << std::endl;
+
+	if (CoverArt())
+		os << *CoverArt() << std::endl;
 
 	return os;
 }
